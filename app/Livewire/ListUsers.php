@@ -11,21 +11,22 @@ class ListUsers extends Component
 {
     use WithPagination;
 
-  protected $paginationTheme = 'bootstrap';
+    protected $paginationTheme = 'bootstrap';
     protected $listeners = ['success' => '$refresh'];
     #On["success"]
 
     #[On('removeUser')]
-    public function  removeUser($id){
+    public function  removeUser($id)
+    {
 
-User::find($id)->delete();        
-   
- }
-   
+        User::find($id)->delete();
+    }
+
 
     public function render()
     {
         $users = User::paginate(5);
-        return view('livewire.list-users',['users' => $users]);
+        // dd($users->toArray());
+        return view('livewire.list-users', ['users' => $users]);
     }
 }
